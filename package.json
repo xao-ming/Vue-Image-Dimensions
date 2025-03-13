@@ -1,0 +1,62 @@
+{
+  "name": "vue-image-dimensions",
+  "displayName": "Vue Image Dimensions",
+  "description": "自动为 Vue 文件中的图片标签添加宽高属性",
+  "version": "1.0.1",
+  "publisher": "lihaoming",
+  "repository": "https://marketplace.visualstudio.com/items?itemName=lihaoming.img-wh",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "galleryBanner": {
+    "color": "#C80000",
+    "theme": "dark"
+  },
+  "keywords": [
+    "vue",
+    "image",
+    "dimensions",
+    "width",
+    "height"
+  ],
+  "activationEvents": [
+    "onLanguage:vue"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vue-image-dimensions.addImageDimensions",
+        "title": "添加图片宽高属性"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "vue-image-dimensions.addImageDimensions",
+        "key": "tab",
+        "when": "editorTextFocus && editorLangId == 'vue' && !suggestWidgetVisible"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "@types/vscode": "^1.60.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
+    "eslint": "^8.39.0",
+    "image-size": "^1.2.0",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "probe-image-size": "^7.2.3",
+    "sharp": "^0.33.5"
+  }
+}
