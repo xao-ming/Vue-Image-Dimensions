@@ -2,6 +2,10 @@
 
 这个 VSCode 扩展可以自动为 Vue 文件中的 `<a-img>` 和 `<fac-img>` 标签添加宽高属性。
 
+# 演示
+
+![演示](https://github.com/xao-ming/Vue-Image-Dimensions/blob/main/view.gif?raw=truef)
+
 ## 功能
 
 - 当光标位于 `<a-img>` 或 `<fac-img>` 标签内时，标签会被高亮显示，并提示可以按 Tab 键添加宽高
