@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
-import sizeOf from 'image-size';
 import getImageSize from '../utils/imageSize';
 // 更简单的正则表达式，可能更可靠
 export const IMG_TAG_REGEX = /<(a-img|fac-img)([^>]*)src=["']([^"']+)["']([^>]*)>/;
@@ -27,7 +26,7 @@ export async function getImageDimensions(imagePath: string, documentUri: vscode.
     const fullImagePath = findFileInDirectory(assetsDir, imagePath);
 
     if (!fullImagePath) {
-        throw new Error(`在 src/assets 目录下找不到图片文件: ${imagePath} ${assetsDir}`);
+        throw new Error(`在 src/assets 目录下找不到图片文件: ${imagePath},请检查图片是否在 src/assets 目录下`);
     }
 
     // 获取fullImagePath图片尺寸
@@ -104,4 +103,22 @@ export function replaceTagWithDimensions(text: string, width: number, height: nu
 
     // 如果都不匹配，返回原文本
     return text;
+}
+
+export async function insertImageDimensions(imagePath: string, documentUri: vscode.Uri, position: vscode.Position) {
+    const dimensions = await getImageDimensions(imagePath, documentUri);
+    if (dimensions) {
+        // 生成 tab 字符串
+        const tabStr = `\t${dimensions.width}px × ${dimensions.height}px`;
+
+        // 插入 tab
+        const editor = vscode.window.activeTextEditor;
+        if (editor) {
+            const document = editor.document;
+            const editBuilder = new vscode.WorkspaceEdit();
+            editBuilder.insert(document.uri, position, tabStr);
+            await vscode.workspace.applyEdit(editBuilder);
+
+        }
+    }
 } 

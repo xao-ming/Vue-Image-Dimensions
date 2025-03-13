@@ -87,4 +87,14 @@ export function disposeDecorator(): void {
     if (decorationType) {
         decorationType.dispose();
     }
+}
+
+// 添加一个导出函数，用于清除装饰
+export function clearDecorations(editor: vscode.TextEditor | undefined): void {
+    if (!editor || !decorationType) {
+        return;
+    }
+
+    // 清除所有装饰
+    editor.setDecorations(decorationType, []);
 } 

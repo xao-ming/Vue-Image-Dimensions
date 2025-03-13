@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-img src="temp.png" />
-    <a-img src="122.jpg" />
+    <a-img src="temp1.jpg" />
   </div>
 </template>
 

@@ -5,6 +5,7 @@ import {
     replaceTagWithDimensions,
     IMG_TAG_REGEX
 } from './imageDimensions';
+import { clearDecorations } from './decorator';
 
 /**
  * 处理 Tab 键添加图片尺寸的命令
@@ -84,4 +85,10 @@ async function applyImageDimensions(
             newText
         );
     });
+
+    // 清除装饰
+    clearDecorations(editor);
+
+    // 操作完成后隐藏提示窗口
+    await vscode.commands.executeCommand('hideSuggestWidget');
 } 
